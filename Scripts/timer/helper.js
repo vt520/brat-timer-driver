@@ -13,6 +13,7 @@ function Remind(callback, seconds, event = null) {
     return timer_name;
 
 }
+
 function CancelRemind(timer_name) {
     CancelTimer(timer_name);
     CancelRelay(Persist[timer_name].relay);

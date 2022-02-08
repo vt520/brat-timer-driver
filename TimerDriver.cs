@@ -20,12 +20,16 @@ namespace Brat.Drivers {
             AutoReset = false
         };
         private Dictionary<string, TimedEvent> events = new Dictionary<string, TimedEvent> { };
-        public double Resolution {
+        protected double Resolution {
             get => timer.Interval;
             set {
                 if (value < 1000) value = 1000;
                 timer.Interval = value;
             }
+        }
+        public bool TimerResolution(dynamic ms_per_tick) {
+            Resolution = double.Parse(Utility.Unwrap(ms_per_tick));
+            return true;
         }
         public TimerAPI(ProcessorHost processor) : base(processor) {
             Resolution = 1000;
