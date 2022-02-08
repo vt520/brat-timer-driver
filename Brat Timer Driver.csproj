@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Brat.Driver</RootNamespace>
+    <AssemblyName>TimerDriver</AssemblyName>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\Bratwurst\</OutputPath>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Brat">
+      <HintPath>..\..\..\..\..\Bratwurst\net5.0\Brat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="IF NOT EXIST &quot;$(OutDir)Drivers&quot; MKDIR &quot;$(OutDir)Drivers&quot;;&#xD;&#xA;MOVE &quot;$(TargetDir)$(TargetName).*&quot; &quot;$(OutDir)Drivers&quot;;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="IF EXIST $(OutDir)Drivers\$(TargetName).* DEL $(OutDir)Drivers\$(TargetName).*" />
+  </Target>
+
+</Project>
