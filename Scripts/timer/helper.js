@@ -1,5 +1,11 @@
 ﻿/** provided by: brat-timer-driver */
 var timer = ConnectDriver("TimerDriver");
+TimerResolution(1000);
+
+const TIMER = {
+    minute: 60,
+    hour: 3600
+}
 
 function Remind(callback, seconds, event = null) {
     if (!event) event = {};
