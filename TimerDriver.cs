@@ -28,7 +28,7 @@ namespace Brat.Drivers {
             }
         }
         public bool TimerResolution(dynamic ms_per_tick) {
-            Resolution = double.Parse(Utility.Unwrap(ms_per_tick));
+            Resolution = Utility.Unwrap(ms_per_tick);
             return true;
         }
         public TimerAPI(ProcessorHost processor) : base(processor) {
